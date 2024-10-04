@@ -1,0 +1,19 @@
+{
+  "name": "rspress-doc-template",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "rspress dev",
+    "build": "rspress build",
+    "preview": "rspress preview"
+  },
+  "dependencies": {
+    "rspress": "^1.31.0"
+  },
+  "devDependencies": {
+    "@types/node": "^16",
+    "rsbuild-plugin-google-analytics": "^1.0.3",
+    "rsbuild-plugin-open-graph": "^1.0.2",
+    "rspress-plugin-font-open-sans": "^1.0.0"
+  }
+}

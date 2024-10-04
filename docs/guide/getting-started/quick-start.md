@@ -1,0 +1,35 @@
+# Quick Start
+
+### 1. Install EasyTest
+
+```bash
+npm install -D  @olton/easytest
+```
+
+### 2. Add script to `package.json`
+
+```json
+{
+  "scripts": {
+    "test": "easytest"
+  }
+}
+```
+
+### 3. Create a test file
+```javascript
+function hello() {
+    return "Hello"
+}
+
+describe(`Common tests suite`, () => {
+    it(`says hello`, () => {
+        return expect(hello()).toBe("Hello")
+    })
+})
+```
+
+### 4. Run tests
+
+```bash
+npm test

@@ -1,0 +1,39 @@
+# TypeScript
+
+To use EasyTest with `TypeScript` you need to install `tsx` package.
+
+```bash
+npm install -D tsx
+```
+
+You must change a script to run tests in `package.json`:
+
+```json
+{
+  "scripts": {
+    "test": "cross-env NODE_OPTIONS=\"--import tsx\" easytest --tsx"
+  }
+}
+```
+
+> `cross-env` - is a package that allows you to set environment variables in a cross-platform way.
+
+
+Commands to set environment variables to support TypeScript
+
+**powershell**
+```powershell
+$env:NODE_OPTIONS="--import tsx"
+```
+
+**linux**, **macos**
+```bash
+export NODE_OPTIONS="--import tsx"
+```
+
+**cmd**
+```cmd
+set NODE_OPTIONS="--import tsx"
+```
+
+Now you can write tests in `TypeScript` and tests the TypeScript code.
