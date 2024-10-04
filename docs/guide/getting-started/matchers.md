@@ -1,6 +1,29 @@
 # Matchers
 
-EasyTest has a built-in matcher library that allows you to test your code with a large number of matchers:
+EasyTest has a built-in matcher library that allows you to test your code with a large number of matchers.
+
+To use a matcher, you need to call expect, which will return an instance of Expect, which, in turn, will make it possible to call the corresponding matcher on the specified value.
+
+```javascript
+import {expect, test} from '@olton/easytest'
+
+test(`Common tests suite`, () => {
+    expect(1 + 1).toBe(2)
+})
+```
+
+If in `expect` you pass the value to be tested,
+then in matcher you specify a control value that must either match the value being tested or not.
+Also in matcher you can pass your custom error message.
+
+```javascript
+import {expect, test} from '@olton/easytest'
+
+test(`Common tests suite`, () => {
+    expect(1 + 1).toBe(2, `1 + 1 should be 2`)
+})
+```
+
 
 ## toBe()
 `toBe(expected, msg?: string)`
