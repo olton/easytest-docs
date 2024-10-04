@@ -1,14 +1,14 @@
 # TypeScript
 
+import { PackageManagerTabs } from '@theme';
+
 To use EasyTest with `TypeScript` you need to install `tsx` package.
 
-```bash
-npm install -D tsx
-```
+<PackageManagerTabs command="install -D tsx" />
 
 You must change a script to run tests in `package.json`:
 
-```json
+```json title="package.json"
 {
   "scripts": {
     "test": "cross-env NODE_OPTIONS=\"--import tsx\" easytest --tsx"

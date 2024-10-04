@@ -30,7 +30,7 @@ To change the configuration, you need to create a `easytest.json` file in the ro
 
 You can create a `easytest.json` file in free path, but in this case you must use argument `--config=file_name.json` in order to tell EasyTest where the configuration file is located.
 
-```json
+```json title="package.json"
 {
   "scripts": {
     "test": "easytest --config=tests/easytest.json"
@@ -46,7 +46,7 @@ You can create a `easytest.json` file in free path, but in this case you must us
 - `--exclude=node_modules/**` - exclude files from testing.
 - `--test=test_name` - execute only tests whose name contains value.
 
-```json
+```json title="package.json"
 {
   "scripts": {
     "test": "easytest --coverage --verbose --include=**/core.spec.{t,j}s"
