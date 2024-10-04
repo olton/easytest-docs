@@ -30,6 +30,6 @@ jobs:
         with:
           server: eg77.mirohost.net
           server-dir: easy.org.ua/
-          local-dir: docs_build/
+          local-dir: doc_build/
           username: easynt
           password: ${{ secrets.FTP_PASSWORD }}
