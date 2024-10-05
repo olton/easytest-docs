@@ -123,8 +123,8 @@ export default defineConfig({
                     text: 'Advanced',
                     items: [
                         {
-                            text: 'Using Custom Matchers',
-                            link: '/guide/advanced/custom-matchers',
+                            text: 'Extending Matchers',
+                            link: '/guide/advanced/extending-matchers',
                         },
                     ]
                 },

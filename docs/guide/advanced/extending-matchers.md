@@ -1,6 +1,6 @@
-# Expanding Expectations
+# Extending Expectations
 
-When you're writing tests, you often need to check that values meet certain conditions. 
+When you're writing tests, you often need to check that values meet certain conditions.
 `expect` gives you access to a number of `matchers` that let you validate different things.
 
 If you miss the built-in matchers, you can easily create your own by fattening up an instance of Expect.
@@ -24,3 +24,4 @@ test(`Custom expect`, () => {
     expect(2).toBeEven()
 })
 ```
+
