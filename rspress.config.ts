@@ -60,10 +60,6 @@ export default defineConfig({
                             link: '/guide/getting-started/quick-start',
                         },
                         {
-                            text: 'DOM (Document Object Model)',
-                            link: '/guide/getting-started/dom',
-                        },
-                        {
                             text: 'TypeScript Support',
                             link: '/guide/getting-started/typescript',
                         },
