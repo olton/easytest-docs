@@ -41,7 +41,7 @@ export default defineConfig({
         enableContentAnimation: true,
         enableAppearanceAnimation: false,
         footer: {
-            message: '© 2024 Serhii Pimenov. All Rights Reserved.',
+            message: `© 2024 Serhii Pimenov. All Rights Reserved.<br/> Created for personal purpose!`,
         },
         socialLinks: [
             {icon: 'github', mode: 'link', content: 'https://github.com/olton/easytest'},

@@ -3,20 +3,16 @@
 EasyTest has a built-in `DOM` object that allows you to test `HTML elements` in your tests (we use `jsdom` to create one).
 For testing HTML elements, global objects such as window, document and corresponding global methods and interfaces are created.
 
+To enable global DOM, you need to use parameter `--dom` in the command line,
+or set `dom` to `true` in the configuration file.
+Also you can use `DOM.setup()` method to set up the DOM object manually.
+
+
 In each test, you can use the `window` and `document` objects to test the HTML elements.
 
 ## Example of test with HTML elements.
 
 ```javascript
-import {
-    beforeAll, 
-    beforeEach, 
-    describe, 
-    it, 
-    expect, 
-    DOM
-} from "@olton/easytest";
-
 beforeAll(() => {
     DOM.flash()
     DOM.js.fromFile('./lib/metro.js')

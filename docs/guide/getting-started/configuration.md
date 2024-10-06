@@ -17,6 +17,7 @@ By default, EasyTest use next configuration:
   "exclude": ["node_modules/**"],
   "coverage": false,
   "verbose": false,
+  "dom": false,
   "report": {
     "type": "lcov",
     "dir": "coverage"
@@ -45,6 +46,7 @@ You can create a `easytest.json` file in free path, but in this case you must us
 - `--include=**/*.spec.{t,j}s` - include files for testing.
 - `--exclude=node_modules/**` - exclude files from testing.
 - `--test=test_name` - execute only tests whose name contains value.
+- `--dom` - enable global DOM.
 
 ```json title="package.json"
 {
