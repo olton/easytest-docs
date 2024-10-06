@@ -5,8 +5,39 @@ For testing HTML elements, global objects such as window, document and correspon
 
 To enable global DOM, you need to use parameter `--dom` in the command line,
 or set `dom` to `true` in the configuration file.
+
+```json title="package.json"
+{
+    "scripts": {
+        "test": "easytest --dom"
+    }
+}
+```
+
+or
+
+```json title="easytest.json"
+{
+    "dom": true
+}
+```
+
 Also you can use `DOM.setup()` method to set up the DOM object manually.
 
+```javascript
+beforeAll(() => {
+    DOM.setup(``, {
+        runScripts: "dangerously",
+        resources: "usable",
+        url: "http://localhost",
+        pretendToBeVisual: true,
+    })
+})
+
+afterAll(() => {
+    DOM.clean()
+})
+```
 
 In each test, you can use the `window` and `document` objects to test the HTML elements.
 
