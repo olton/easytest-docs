@@ -104,6 +104,10 @@ export default defineConfig({
                             text: 'Verbose mode',
                             link: '/guide/features/verbose',
                         },
+                        {
+                            text: 'Coverage Report',
+                            link: '/guide/features/coverage',
+                        },
                     ],
                 },
                 {
