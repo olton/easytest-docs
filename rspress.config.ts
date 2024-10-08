@@ -130,6 +130,10 @@ export default defineConfig({
                             text: 'Extending Matchers',
                             link: '/guide/advanced/extending-matchers',
                         },
+                        {
+                            text: 'Built-in Headless Browser',
+                            link: '/guide/advanced/browser',
+                        },
                     ]
                 },
                 {
