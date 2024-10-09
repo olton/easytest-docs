@@ -35,8 +35,7 @@ describe("Google", () => {
 - `B.document.url()` - Get document url.
 - `B.document.html()` - Get document html, include `doctype`.
 - `B.document.cookies(urls[])` - Get document cookies.
-- `B.$(selector)` - Finds the first element that matches the selector. If no element matches the selector, the return value resolves to null.
-- `B.$$(selector)` - Finds elements on the page that match the selector. If no elements match the selector, the return value resolves to `[]`.
+- `B.$(selector)` - Finds elements that match the selector. If no element matches the selector, the return value resolves to [].
 - `B.window(prop)` - Get specified window property.
 - `B.screenshot(path)` - Take a screenshot of the current page.
 - `B.click(selector)` - Click to an element specified by selector.
