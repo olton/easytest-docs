@@ -4,8 +4,6 @@
 
 Welcome to EasyTest — a simple testing framework for JavaScript and TypeScript, written in pure JavaScript.
 
----
-
 ## Installation
 ```bash
 npm install @olton/easytest  --save-dev
