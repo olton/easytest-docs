@@ -4,6 +4,13 @@
 
 Welcome to EasyTest — a simple testing framework for JavaScript and TypeScript, written in pure JavaScript.
 
+---
+
+## Installation
+```bash
+npm install @olton/easytest  --save-dev
+```
+
 ## Core features:
 - No need to import `it`, `test`, `describe` or `ecpext` in your test file. These functions are available globally.
 - Test `JavaScript` and `TypeScript` code at one time.
