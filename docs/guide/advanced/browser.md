@@ -40,8 +40,7 @@ describe("Google", () => {
 - `B.screenshot(path)` - Take a screenshot of the current page.
 - `B.click(selector)` - Click to an element specified by selector.
 - `B.tap(selector)` - Tap to an element specified by selector.
-- `B.$(selector)` - Finds the first element that matches the selector. If no element matches the selector, the return value resolves to null.
-- `B.$$(selector)` - Finds elements on the page that match the selector. If no elements match the selector, the return value resolves to `[]`.
+- `B.type(selector, text, options)` - Type text to an element specified by selector.
 - `B.emulate(device)` - Emulates a given device's metrics and user agent.
 - `B.devices` - Get supported emulated device's list.
 - `B.addCss(options)` - Add CSS to the current page.
@@ -52,5 +51,40 @@ describe("Google", () => {
 - `B.page(index)` - Get the page instance by index.
 - `B.newPage()` - Create a new page and set it as current.
 - `B.setPage(page)` - Set the page as current.
-- `B.closePage(page, runBeforeOnLoad)` - Close the page by index.
+- `B.setPageNyIndex(index)` - Set the page as current.
+- `B.close(runBeforeOnLoad)` - Close the current page by index.
+- `B.closePage(page, runBeforeOnLoad)` - Close the page by Page index or Puppeteer page object.
+- `B.closeAll(runBeforeOnLoad)` - Close all pages.
+- `B.exec(js, ...args)` - Execute JavaScript in the current page.
+- `B.startCoverage(options?)` - Start code coverage.
+- `B.stopCoverage()` - Stop code coverage.
 - `B.currentPage` - Get the current page instance.
+- `B.browser` - Get the browser instance.
+
+## Example
+In example below we test the `accordion.html` file for Metro UI.
+
+```javascript
+import {beforeAll, afterAll, describe, it, expect, delay, getFileUrl, B} from "@olton/easytest";
+
+beforeAll(async () => {
+    await B.create()
+})
+
+afterAll(async () => {
+    await B.bye()
+})
+
+describe("accordion.html tests", () => {
+    it("accordion.html", async () => {
+        await B.visit(`${getFileUrl(`./__html__/accordion.html`)}`)
+        if (B.error) {
+            await delay(1000)
+            await B.screenshot('./screenshots/accordion.html.png', {
+                fullPage: true
+            })
+        }
+        expect(B.error).toBeNull(B.error)
+    })
+})
+```
