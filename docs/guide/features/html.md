@@ -1,6 +1,6 @@
 # Testing HTML Elements
 
-EasyTest has a built-in `DOM` object that allows you to test `HTML elements` in your tests (we use `jsdom` to create one).
+EasyTest has a built-in `DOM` object that allows you to test `HTML elements` in your tests (we use `happy-dom` to create one).
 For testing HTML elements, global objects such as window, document and corresponding global methods and interfaces are created.
 
 To enable global DOM, you need to use parameter `--dom` in the command line,
@@ -26,16 +26,13 @@ Also you can use `DOM.setup()` method to set up the DOM object manually.
 
 ```javascript
 beforeAll(() => {
-    DOM.setup(``, {
-        runScripts: "dangerously",
-        resources: "usable",
+    DOM.setup({
         url: "http://localhost",
-        pretendToBeVisual: true,
     })
 })
 
 afterAll(() => {
-    DOM.clean()
+    DOM.bye()
 })
 ```
 
@@ -44,13 +41,11 @@ In each test, you can use the `window` and `document` objects to test the HTML e
 ## Example of test with HTML elements.
 
 ```javascript
-beforeAll(() => {
-    DOM.flash()
-    DOM.js.fromFile('./lib/metro.js')
-})
+import '../lib/metro.js'
 
-beforeEach(() => {
-    DOM.html.fromString(`
+describe(`Accordion tests`, () => {
+    beforeEach(() => {
+        DOM.html(`
         <div id="accordion">
             <div class="frame">
                 <div class="heading">Heading</div>
@@ -58,9 +53,8 @@ beforeEach(() => {
             </div>
         </div>
     `)
-})
+    })
 
-describe(`Accordion tests`, () => {
     it(`Create accordion`, async () => {
         const accordion = window
             .Metro
@@ -78,25 +72,25 @@ EasyTest exports the `DOM` object that contains methods and properties for worki
 import {DOM} from '@olton/easytest'
 ```
 
-### Properties
+## Properties & Methods
 
-- `css` - contains methods to load CSS files.
-- `js` - contains methods to load JavaScript.
-- `html` - contains methods to load HTML files.
+- `css` - scope, contains methods to load CSS files.
+- `js` - scope, contains methods to load JavaScript.
 
-#### css
-- `fromFile()` - loads CSS styles from a file.
-- `fromString()` - loads the CSS from a string.
-- `fromUrl()` - loads the CSS from a URL.
+### css
+- `fromFile()` - loads CSS styles from file. This method creates a style tag with the content.
+- `fromString()` - loads the CSS from string. This method creates a style tag with the content.
+- `fromUrl()` - loads the CSS from URL. This method creates a link tag with the href attribute.
+- `fromObject()` - create CSS from object.
 
+
+Create tag style and put into `textContent` contents of `style.css` file.
 ```javascript
-// Create tag style and put into style.css file content
-// File must exist in the file system
 DOM.css.fromFile('style.css')
 ```
 
+Create tag style and put into `textContent` string content
 ```javascript
-// Create tag style and put into string content
 DOM.css.fromString(`
     body {
         background-color: red;
@@ -104,23 +98,34 @@ DOM.css.fromString(`
 `)
 ```
 
+Create tag link with href to URL
 ```javascript
-// Create tag link with href to URL
 DOM.css.fromUrl('https://example.com/style.css')
 ```
 
-#### js
+Create tag style and put into `textContent` object content
+```javascript
+DOM.css.fromObject({
+    body: {
+        backgroundColor: 'red'
+    }
+})
+```
+
+
+### js
 - `fromFile()` - loads JavaScript from a file.
 - `fromString()` - loads JavaScript from a string.
 - `fromUrl()` - loads JavaScript from a URL.
 
+
+Create tag script and put into script.js file content
 ```javascript
-// Create tag script and put into script.js file content
 DOM.js.fromFile('script.js')
 ```
 
+Create tag script and put into string content
 ```javascript
-// Create tag script and put into string content
 DOM.js.fromString(`
     function hello() {
         return "Hello"
@@ -128,65 +133,60 @@ DOM.js.fromString(`
 `)
 ```
 
+Create tag script with src to URL
 ```javascript
-// Create tag script with src to URL
 DOM.js.fromUrl('https://example.com/script.js')
 ```
 
-#### html
+## Methods
 
-Methods below are change `document.body.innerHTML` property.
+- `setup(options)` - sets up the DOM object.
+- `bye()` - removes the DOM object.
+- `html(str)` - Set Document HTML.
+- `eval()` - evaluates the JavaScript code.
+- `$()` - synonym for `document.querySelector()`.
+- `$$()` - synonym for `document.querySelectorAll()`.
+- `flush()` - removes all elements from the document.
 
-- `fromFile()` - loads HTML from a file.
-- `fromString()` - loads HTML from a string.
-- `fromUrl()` - loads HTML from a URL.
-
-```javascript
-DOM.html.fromFile('index.html')
-```
-
-
-### Methods
-
-- `setup` - sets up the DOM object.
-- `clean` - removes the DOM object.
-- `flash` - flashes the Document HTML.
-- `eval` - evaluates the JavaScript code.
-
-#### Setup DOM
-EasyTest automatically sets up the DOM object before each test. But you can set up the DOM object manually.
+## Setup DOM
+EasyTest automatically sets up the DOM object before each test. 
+But you can set up the DOM object manually.
 
 ```javascript
-const html = `
-    <div id="app">
-        <h1>Hello</h1>
-    </div>
-`
-DOM.setup(html, {
-    runScripts: "dangerously",
-    resources: "usable",
-    url: "http://localhost",
-    pretendToBeVisual: true,
+DOM.setup({
+    url: 'http://localhost:8000/',
 })
 ```
 
-#### Cleanup DOM
-If you need to clean up the DOM object, you can use the `clean` method.
-
+All setup options are optional.
 ```javascript
-DOM.clean()
-```
-
-#### Flash DOM
-If you need to flash the Document HTML, you can use the `flash` method.
-
-```javascript
-DOM.flash()
-```
-
-#### Evaluate JavaScript
-If you need to evaluate JavaScript code, you can use the `eval` method.
-
-```javascript
-DOM.eval(`console.log("Hello!")`)
+DOM.setup({
+    url: 'http://localhost:8000/',
+    disableJavaScriptEvaluation: false,
+    disableJavaScriptFileLoading: false,
+    disableCSSFileLoading: false,
+    disableComputedStyleRendering: false,
+    handleDisabledFileLoadingAsSuccess: false,
+    errorCapture: 'processLevel',
+    navigation: {
+        disableMainFrameNavigation: false,
+        disableChildFrameNavigation: false,
+        disableChildPageNavigation: false,
+        disableFallbackToSetURL: false,
+        crossOriginPolicy: 'no-cors'
+    },
+    navigator: {
+        userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36',
+        maxTouchPoints: 5
+    },
+    timer: { 
+        maxTimeout: -1, 
+        maxIntervalTime: -1, 
+        maxIntervalIterations: -1 
+    },
+    device: { 
+        prefersColorScheme: 'light', 
+        mediaType: 'screen' 
+    }
+})
 ```
