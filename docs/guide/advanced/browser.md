@@ -15,7 +15,7 @@ beforeAll(async () => {
 });
 
 afterAll(async () => {
-    await B.close();
+    await B.bye();
 });
 
 describe("Google", () => {
